@@ -14,9 +14,9 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         name: Checkout source code
-      - uses: terraform-linters/setup-tflint@v2
+      - uses: terraform-linters/setup-tflint@v3
         name: Setup TFLint
         with:
           tflint_version: v0.47.0
