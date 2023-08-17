@@ -16,9 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: golangci-lint
-        run: |
-          docker run --rm -v $(pwd):/src -w /src golangci/golangci-lint golangci-lint run --timeout 1h --skip-dirs integration ./...
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          args: "--timeout 1h --skip-dirs integration"
       - name: Run Gosec Security Scanner
         uses: securego/gosec@master
         with:
-          args: '-exclude-dir=terraform-provider-azurerm ./...'
+          args: "-exclude-dir=terraform-provider-azurerm ./..."
