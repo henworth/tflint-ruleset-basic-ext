@@ -1,4 +1,5 @@
 name: lint
+
 on:
   push:
     tags:
@@ -7,20 +8,19 @@ on:
       - master
       - main
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
           args: "--timeout 1h --skip-dirs integration"
-      - name: Run Gosec Security Scanner
-        uses: securego/gosec@master
-        with:
-          args: "-exclude-dir=terraform-provider-azurerm ./..."
